@@ -1,0 +1,14 @@
+﻿@page "/admin/roomtype/add"
+@model MotelManagement.Pages.admin.AddRooomTypeManagerModel
+@{
+}
+<div class="container mt-5">
+    <h2 class="mb-4">Thêm Loại Phòng</h2>
+    <form method="post" asp-page-handler="AddnewRoomType">
+        <div class="mb-3">
+            <label for="roomTypeName" class="form-label">Tên Loại Phòng</label>
+            <input type="text" class="form-control" id="roomTypeName" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    </form>
+</div>

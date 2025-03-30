@@ -1,0 +1,69 @@
+﻿@page "/admin/employee/add"
+@using MotelManagement.Data.Models
+@using MotelManagement.Common
+@model MotelManagement.Pages.admin.AddEmployeeManagerModel
+@{
+}
+<div class="container mt-5">
+    <h2 class="mb-4" id="formTitle">Thêm / Cập Nhật Nhân Viên</h2>
+    <form method="post" asp-page-handler="@(ViewData["employee"] != null ? "UpdateEmployee" : "AddEmployee")">
+        <input type="hidden" name="MaNhanVien" id="MaNhanVien" value="@((ViewData["employee"] != null) ? ((Employee)ViewData["employee"]).MaNhanVien : 0)">
+
+        <div class="mb-3">
+            <label for="HoTen" class="form-label">Họ Tên</label>
+            <input type="text" class="form-control" id="HoTen" name="HoTen" required value="@((ViewData["employee"] != null) ? ((Employee)ViewData["employee"]).HoTen : "")">
+        </div>
+
+        <select class="form-control" id="GioiTinh" name="GioiTinh" required>
+            @if (ViewData["employee"] != null)
+            {
+                var employee = (Employee)ViewData["employee"];
+                <option value="Male" selected="@(employee.GioiTinh == Gender.Male)">Nam</option>
+                <option value="Female" selected="@(employee.GioiTinh == Gender.Female)">Nữ</option>
+                <option value="Other" selected="@(employee.GioiTinh == Gender.Other)">Khác</option>
+            }
+            else
+            {
+                <option value="Male">Nam</option>
+                <option value="Female">Nữ</option>
+                <option value="Other">Khác</option>
+            }
+        </select>
+
+
+        <div class="mb-3">
+            <label for="DiaChi" class="form-label">Địa Chỉ</label>
+            <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="@((ViewData["employee"] != null) ? ((Employee)ViewData["employee"]).DiaChi : "")">
+        </div>
+
+        <div class="mb-3">
+            <label for="Sdt" class="form-label">Số Điện Thoại</label>
+            <input type="text" class="form-control" id="Sdt" name="Sdt" pattern="[0-9]{10,15}" value="@((ViewData["employee"] != null) ? ((Employee)ViewData["employee"]).Sdt : "")">
+        </div>
+
+        <div class="mb-3">
+            <label for="NgaySinh" class="form-label">Ngày Sinh</label>
+            <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value="@((ViewData["employee"] != null && ((Employee)ViewData["employee"]).NgaySinh.HasValue) ? ((Employee)ViewData["employee"]).NgaySinh.Value.ToString("yyyy-MM-dd") : "")">
+        </div>
+
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@((ViewData["employee"] != null) ? ((Employee)ViewData["employee"]).Email : "")">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitButton">Lưu</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let employeeId = document.getElementById("MaNhanVien").value;
+        if (employeeId && employeeId !== "0") {
+            document.getElementById("formTitle").innerText = "Cập Nhật Nhân Viên";
+            document.getElementById("submitButton").innerText = "Cập Nhật";
+        } else {
+            document.getElementById("formTitle").innerText = "Thêm Nhân Viên";
+            document.getElementById("submitButton").innerText = "Thêm Mới";
+        }
+    });
+</script>

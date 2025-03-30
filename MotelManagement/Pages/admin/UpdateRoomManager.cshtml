@@ -1,0 +1,60 @@
+﻿@page "/admin/room/updateroom"
+@using MotelManagement.Data.Models
+@using MotelManagement.Common
+@model MotelManagement.Pages.admin.UpdateRoomManagerModel
+@{
+    Room room = ViewData["room"] as Room;
+    bool isEdit = room != null;
+}
+
+<link rel="stylesheet" href="~/Assets/Admin/css/zoomimage.css">
+
+<div class="container mt-5">
+    <form method="post" asp-page-handler="UpdateRoom">
+        <input type="hidden" name="RoomId" value="@(isEdit ? room.RoomId : "")" />
+        <div class="mb-3">
+            <label for="roomName" class="form-label">Tên Phòng</label>
+            <input type="text" class="form-control" id="roomName" name="Name" value="@(isEdit ? room.Name : "")" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô Tả</label>
+            <textarea class="form-control" id="description" name="Description" rows="3">@(isEdit ? room.Description : "")</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá</label>
+            <input type="number" class="form-control" id="Price" name="price" step="0.01" value="@(isEdit ? room.Price : "")" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="maxPerson" class="form-label">Số Người Tối Đa</label>
+            <input type="number" class="form-control" id="maxPerson" name="MaxPerson" value="@(isEdit ? room.MaxPerson : "")" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="roomTypeId" class="form-label">Chọn Loại Phòng</label>
+            <select name="RoomTypeId" id="RoomTypeId" class="form-control">
+                <option value=""> - Loại Phòng - </option>
+                @foreach (RoomType roomType in (List<RoomType>)ViewData["roomTypes"])
+                {
+                    <option value="@roomType.RoomTypeId" selected="@(isEdit && room.RoomTypeId == roomType.RoomTypeId ? "selected" : null)">
+                        @roomType.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="statusId" class="form-label">Trạng Thái</label>
+            <select class="form-control" id="statusId" name="statusId" required>
+                <option value="">-- Chọn Trạng Thái --</option>
+                @foreach (var status in (List<Status>)ViewData["statusList"])
+                {
+                    <option value="@status.StatusId">@status.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@(isEdit ? "Cập Nhật" : "Thêm Phòng")</button>
+    </form>
+</div>

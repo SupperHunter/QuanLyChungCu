@@ -1,0 +1,72 @@
+﻿@page "/admin/room/addroom"
+@model MotelManagement.Pages.admin.AddRooomManagerModel
+@using MotelManagement.Data.Models
+@using MotelManagement.Common
+@{
+
+}
+<link rel="stylesheet" href="~/Assets/Admin/css/zoomimage.css">
+
+<div class="container mt-5">
+    <h2 class="mb-4">Thêm Phòng Mới</h2>
+    <form method="post" asp-page-handler="AddnewRoom" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="roomName" class="form-label">Tên Phòng</label>
+            <input type="text" class="form-control" id="roomName" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô Tả</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá</label>
+            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="maxPerson" class="form-label">Số Người Tối Đa</label>
+            <input type="number" class="form-control" id="maxPerson" name="maxPerson" required>
+        </div>
+        <div class="mb-3">
+            <label for="maxPerson" class="form-label">Chọn loại phòng</label>
+            <select name="roomTypeId" id="lunchBegins" class="selectpicker show-tick form-control">
+                <option value=""> -Loại Phòng- </option>
+                @foreach (RoomType roomType in (List<RoomType>)@ViewData["roomTypes"])
+                {
+                    if (roomType.RoomTypeId == Convert.ToInt32(ViewData["roomTypeId"]))
+                    {
+                        <option selected="selected" value="@roomType.RoomTypeId">@roomType.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@roomType.RoomTypeId">@roomType.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="statusId" class="form-label">Trạng Thái</label>
+            <select class="form-control" id="statusId" name="statusId" required>
+                <option value="">-- Chọn Trạng Thái --</option>
+                @foreach (var status in (List<Status>)ViewData["statusList"])
+                {
+                    <option value="@status.StatusId">@status.Name</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="roomTypeId" class="form-label">Loại Phòng</label>
+            <select class="form-control" id="roomTypeId" name="roomTypeId" required>
+                <option value="1">Đơn</option>
+                <option value="2">Đôi</option>
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="roomImages" class="form-label">Chọn Ảnh</label>
+            <input type="file" class="form-control" id="roomImages" name="roomImages" multiple accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Phòng</button>
+    </form>
+</div>

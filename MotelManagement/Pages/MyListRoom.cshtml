@@ -1,0 +1,280 @@
+﻿@page "/user/mylistroom"
+@model MotelManagement.Pages.MyListRoomModel
+@using MotelManagement.Data.Models;
+@using MotelManagement.Common;
+@{
+    List<Booking> list = (List<Booking>)ViewData["list"];
+    List<Passing> listPassings = (List<Passing>)ViewData["listPassings"];
+    List<Contract> listContracts = (List<Contract>)ViewData["listContracts"];
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Phòng của tôi</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+<!-- property area -->
+<div class="content-area recent-property" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-nav">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active">
+                            <a href="#one" aria-controls="one" role="tab" data-toggle="tab">Phòng đăng ký thuê</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#two" aria-controls="two" role="tab" data-toggle="tab"> Phòng đăng ký nhượng</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#three" aria-controls="three" role="tab" data-toggle="tab"> Phòng đã thuê</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="one">
+                            <div class="section">
+                                <div id="list-type" class="proerty-th-list">
+                                @{
+                                    foreach (Booking b in list){
+                                    <div class="col-md-4 p0">
+                                        <div class="box-two proerty-item">
+                                            <div class="item-thumb">
+                                                <a href="../../room/detail?id=@b.RoomId">
+                                                  <img src="~/upload/@b.Room.Images.ElementAt(0).Url">
+                                                </a>
+                                            </div>
+                                            <div class="item-entry overflow">
+                                                <h5><a href="../../room/detail?id=@b.RoomId"> </a></h5>
+                                                <div class="dot-hr"></div>
+                                                <span class="pull-left"><b> Tên phòng :</b> @b.Room.Name </span>
+                                                <span class="proerty-price pull-right" style ="font-size : 16px" >
+                                                    Giá: @b.Room.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ
+                                                </span>
+                                                <p style="display: none;">
+                                                    @b.Room.Description.Substring(0, 100);
+                                                    ...
+                                                </p>
+                                                <div class="property-icon">
+                                                    Trạng thái:
+                                                    @{
+                                                        if ((int)REGISTER_ROOM_STATE.UN_REGISTER == b.Status)
+                                                        {
+                                                            <span style="color: darkorange">Hủy đăng ký</span>
+                                                            }
+                                                            else if ((int)REGISTER_ROOM_STATE.REGISTER == b.Status)
+                                                            {
+                                                            <span style="color: #FDC600">Chờ duyệt |</span>
+                                                            if (b.MeetingDate != null)
+                                                            {
+                                                                <span>Ngày gặp: @b.MeetingDate</span>
+                                                            }                                                                      
+                                                        }else if((int)REGISTER_ROOM_STATE.REJECT == b.Status){
+                                                            <span style="color: red">Yêu cầu bị từ chối</span>
+                                                        }
+                                                    }
+
+                                                    <div class="pull-right">
+                                                        @if ((int)REGISTER_ROOM_STATE.REGISTER == b.Status)
+                                                        {
+                                                            <a href="/user/mylistroom?handler=Unregister&roomid=@b.RoomId" style="color: red; padding-right: 8px" class="button" id="unregister">Hủy đăng ký</a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                   <p style="font-weight: bold; color: #333;">Đặt phòng vào <span style ="color:red">@b.BookingTime.ToString("dd/MM/yyyy") lúc @b.BookingTime.ToString("HH:mm")</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+
+                         <div role="tabpanel" class="tab-pane fade in active" id="two">
+                            <div class="section">
+                                <div id="list-type" class="proerty-th-list">
+                                @{
+                                    foreach (Passing p in listPassings){
+                                    <div class="col-md-4 p0">
+                                        <div class="box-two proerty-item">
+                                            <div class="item-thumb">
+                                                <a href="../../room/detail?id=@p.RoomId"><img src="~/upload/@p.Room.Images.ElementAt(0).Url"></a>
+                                            </div>
+                                            <div class="item-entry overflow">
+                                                <h5><a href="../../room/detail?id=@p.RoomId"> </a></h5>
+                                                <div class="dot-hr"></div>
+                                                <span class="pull-left"><b> Tên phòng :</b> @p.Room.Name </span>
+                                                <span class="proerty-price pull-right" style ="font-size : 16px" >
+                                                    Giá: @p.Room.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ
+                                                </span>
+                                                <p style="display: none;">
+                                                    @p.Room.Description.Substring(0, 100);
+                                                    ...
+                                                </p>
+                                                <div class="property-icon">
+                                                    Trạng thái:
+                                                    @{
+                                                        if ((int)REGISTER_ROOM_STATE.UN_REGISTER == p.Status)
+                                                        {
+                                                            <span style="color: darkorange">Hủy đăng ký</span>
+                                                        }
+                                                        else if ((int)REGISTER_ROOM_STATE.REGISTER == p.Status)
+                                                        {
+                                                            <span style="color: #FDC600">Chờ duyệt |</span>
+                                                             if (p.MeetingDate != null)
+                                                            {
+                                                                <span>Ngày gặp: @p.MeetingDate</span>
+                                                            }    
+                                                        }else if((int)REGISTER_ROOM_STATE.REJECT == p.Status){
+                                                            <span style="color: red">Yêu cầu bị từ chối</span>
+                                                        }
+                                                    }
+
+                                                    <div class="pull-right">
+                                                        @if ((int)REGISTER_ROOM_STATE.REGISTER == p.Status)
+                                                        {
+                                                            <a href="/user/mylistroom?handler=UnregisterPassing&roomid=@p.RoomId" style="color: red; padding-right: 8px" class="button" id="unregister">Hủy đăng ký</a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                   <p style="font-weight: bold; color: #333;">Đặt phòng vào <span style ="color:red">@p.BookingTime.ToString("dd/MM/yyyy") lúc @p.BookingTime.ToString("HH:mm")</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="three">
+                            <div class="section">
+                                <div id="list-type" class="proerty-th-list">
+                                @{
+                                    foreach (Contract c in listContracts){
+                                    <div class="col-md-4 p0">
+                                        <div class="box-two proerty-item">
+                                            <div class="item-thumb">
+                                                <a href="#"><img src="~/upload/@c.Room.Images.ElementAt(0).Url"></a>
+                                            </div>
+                                            <div class="item-entry overflow">
+                                                <h5><a href="#"> </a></h5>
+                                                <div class="dot-hr"></div>
+                                                <span class="pull-left"><b> Tên phòng :</b> @c.Room.Name </span>
+                                                <span class="proerty-price pull-right" style ="font-size : 16px" >
+                                                    Giá: @c.Room.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ
+                                                </span>
+                                                <p style="display: none;">
+                                                    @c.Room.Description.Substring(0, 100);
+                                                    ...
+                                                </p>
+                                                <div class="property-icon">
+                                                    Trạng thái:
+                                                    @{
+                                                        if (!c.IsActive)
+                                                        {
+                                                            <span style="color: red">Hết hạn</span>
+                                                        }
+                                                        else if (c.IsActive)
+                                                        {
+                                                            <span style="color: forestgreen">Còn hợp đồng</span>
+                                                        }
+                                                    }
+
+                                                    <div class="pull-right">
+                                                        @if (c.IsActive)
+                                                        {
+                                                            <a href="/user/manageroom?roomId=@c.RoomId" style="color: forestgreen; padding-right: 8px" class="button">Quản lý phòng</a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+    if(document.querySelector("#unregister")!=null){
+        [document.querySelector("#unregister")].forEach(
+        (item) => {
+            item.addEventListener("click", (event) => {
+                event.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "Bạn chắc chắn muốn hủy đăng ký phòng này chứ?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = item.href;
+                    }
+                });
+            })
+        }
+    )
+    }
+
+        @{
+            if (TempData["Message"] != null)
+            {
+                if (TempData["Message"].Equals("Success"))
+                {
+                    <text>
+                        swal({
+                            title: "Cập nhật thành công!",
+                            text: "",
+                            icon: "success",
+                            buttons: false
+                        });
+                    </text>
+                }
+                else if(TempData["Message"].Equals("Probs"))
+                {
+                    <text>
+                        swal({
+                            title: "Cập nhật thất bại!",
+                            text: "Opps! Đã có lỗi xảy ra!",
+                            icon: "warning",
+                            buttons: false
+                        })
+                    </text>
+               }else if(TempData["Message"].Equals("Registered"))
+               {
+                    <text>
+                        swal({
+                            title: "Cập nhật thất bại!",
+                            text: "Phòng này bạn đã đăng kí",
+                            icon: "warning",
+                            buttons: false
+                        })
+                    </text>
+               }
+        }
+    }
+    </script>
+}
+

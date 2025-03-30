@@ -1,0 +1,303 @@
+﻿@page "/admin/bill"
+@model MotelManagement.Pages.admin.BillManagerModel
+@using MotelManagement.Data.Models
+@{
+}
+<link rel="stylesheet" href="~/Assets/Admin/css/zoomimage.css">
+
+<div class="main-wrapper">
+    <div class="modal fade" id="CreateBill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 640px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tạo hóa đơn</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="note" style="font-weight: bold;">Lưu ý: Dữ liệu chỉ được thêm vào đối với những phòng có người thuê</p>
+                    <form style="display: flex; flex-direction: column;" enctype="multipart/form-data" id="bill-form" method="post" asp-page-handler="ImportBill">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="message-text" class="col-form-label">File Excel:</label>
+                                <input name="file" type="file" class="custom-file-input-upload">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="message-text" class="col-form-label">Mô tả:</label>
+                                <textarea class="form-control" id="message-text" rows="4" name="descriptions"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="createbillsubmit">Tạo đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content container-fluid" style="padding: 0px">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="mt-5">
+                            <h4 class="card-title float-left mt-2">Hóa đơn</h4>
+
+                            <div class="btn-group float-right" style="margin-right: 40px;">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Tùy chọn
+                                </button>
+                                <div class="dropdown-menu" id="menu-modal" style="">
+                                    <a class="dropdown-item" href="#" id="save-bill">Lưu hóa đơn</a>
+                                    <a class="dropdown-item" href="/admin/bill?handler=ExportBill" id="export-bill">Kết xuất hóa đơn</a>
+                                    <a class="dropdown-item" href="#" id="finish-bill">Hoàn thành hóa đơn</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#CreateBill">
+                                        Tạo hóa đơn
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form method="get">
+                        <div class="row formtype">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Hóa đơn tháng từ</label>
+                                    <div class="cal-icon">
+                                        <input type="text" class="form-control datetimepicker" name="from" value="@ViewData["from"]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Hóa đơn tháng đến</label>
+                                    <div class="cal-icon">
+                                        <input type="text" class="form-control datetimepicker" name="to" value="@ViewData["to"]">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tên phòng</label>
+                                <input type="text" class="form-control" id="usr" name="roomName" value="@ViewData["roomName"]">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Người nộp</label>
+                                <input type="text" class="form-control" id="usr" name="owner" value="@ViewData["owner"]">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tìm kiếm</label>
+                                    <input type="submit" class="btn btn-success btn-block mt-0 search_button">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" asp-page-handler="SaveBill" id="form-bill">
+                                <div class="table-responsive">
+                                <table class="table table-stripped table table-hover table-center mb-0" id="listbill">
+                                    <thead>
+                                        <tr>
+                                            <th>Phòng</th>
+                                            <th>Tên khách hàng</th>            
+                                            <th>Tiền phòng</th>
+                                            <th>Điện</th>
+                                            <th>Nước</th>
+                                            <th>Dịch vụ</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                            <th>Đã nộp</th>
+                                            <th>Ngày nộp</th>
+                                            <th>Ngày duyệt</th>
+                                            <th>Ảnh</th>
+                                            <th>Mô tả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @{
+                                        if (Model.listBills != null)
+                                        {
+                                            foreach (Bill bill in Model.listBills)
+                                            {
+                                                <tr>
+                                                    <input name="billIds" value="@bill.BillId" hidden></input>
+                                                    <td>@bill.Room.Name</td>
+                                                    <td>@bill.User.FullName</td>
+                                                    <td>@bill.RoomBill.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+                                                    <td>@bill.ElectricBill.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+                                                    <td>@bill.WaterBill.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+                                                    <td>@bill.ServiceBill.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+                                                     <td>@Model.GetTotal(bill.ServiceBill,bill.ElectricBill,bill.RoomBill,bill.WaterBill).ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+                                                    <td>
+                                                            <select class="form-control" name="states" style="width:120px">
+                                                                @{
+                                                                    foreach (Status s in Model.listStates)
+                                                                    {
+                                                                        if (s.StatusId == bill.BillState)
+                                                                        {
+                                                                            <option value="@s.StatusId" selected>@s.Name</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@s.StatusId">@s.Name</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        @{
+                                                            if (bill.Debt == null)
+                                                            {
+                                                                <td><input type="currency" class="form-control" name="paids" style="width:140px"></td>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>
+                                                                    <input type="currency" class="form-control" name="paids" style="width:140px"
+                                                                value="@Model.GetDept(bill.ServiceBill, bill.ElectricBill, bill.WaterBill, bill.RoomBill, bill.Debt??0).ToString().Replace(".0000","")"></td>
+
+                                                            }
+                                                        }
+                                                    <td>@bill.PaidTime</td>
+                                                    <td>@bill.AcceptTime</td>
+                                                    <td>
+                                                        <div class="gallery_cus" style="width: 50px;height: 80px">
+                                                            <img src="/upload/@bill.BankingImage">
+                                                        </div>
+                                                    </td>
+                                                    <td>@bill.Description</td>
+                                                </tr>
+                                                
+                                            }
+                                        }
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- This is pagination -->
+<div class="pagination-bx rounded-sm gray clearfix" style="display: flex;
+    justify-content: center;
+    padding-top: 84px;">
+    <ul id="paggerBottom" class="pagination">
+    </ul>
+</div>
+</div>
+@section Scripts{
+    <script src="~/Assets/Admin/js/zoomimages.js"></script>
+    <script>
+        var currencyInput = document.querySelectorAll('input[type="currency"]')
+    
+        var currency = 'VND'
+
+     // format inital value
+        document.querySelectorAll('input[type="currency"]').forEach((item)=>{
+            onBlur({target:item})
+            item.addEventListener('focus', onFocus)
+            item.addEventListener('blur', onBlur)
+        })
+
+        function localStringToNumber( s ){
+              return Number(String(s).replaceAll('.',""))
+        }
+
+        function onFocus(e){
+          var value = e.target.value.trim().replace("VND", "").trim();
+          console.log("Forcus: Value: "+value);
+          e.target.value = localStringToNumber(value);
+        }
+
+        function onBlur(e){
+          var value = e.target.value;
+          console.log("Blur: Value: "+value);
+          var options = {
+              maximumFractionDigits : 2,
+              currency              : currency,
+              style                 : "currency",
+              currencyDisplay       : "symbol"
+          }
+    
+          e.target.value = localStringToNumber(value).toLocaleString('it-IT', options)
+        }
+
+        $(document).ready(function () {
+            zoomImages();
+
+        });
+
+        $('#save-bill').click(function(){
+            swal({
+                title: "Bạn muốn lưu hóa đơn này chứ?",
+                text: "Nếu đồng ý, mọi thông tin sẽ được lưu vào trong CSDL!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                $('#form-bill').submit();
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+            }
+            });
+        });
+
+        $('#createbillsubmit').click(function(){
+            console.log("TEST");
+            $('#bill-form').submit();
+        });
+
+        $("#export-bill").click(function(e){
+            e.preventDefault();
+            let params = (new URL(document.location)).searchParams;
+            window.location.href = "/admin/bill?handler=ExportBill&"+params;
+        });
+
+    </script>
+    <script src="~/js/paging.js"></script>
+
+    <script>
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+        });
+
+
+    var pageindex = @ViewData["pageIndex"];
+    var totalpage = @ViewData["totalPage"];
+    var container = document.getElementById('paggerBottom');
+    var gap = 2;
+    var url_param = '@ViewData["url"]';
+    pagination(pageindex,totalpage,container,gap,url_param);
+    </script>
+}
