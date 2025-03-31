@@ -30,7 +30,7 @@ namespace MotelManagement.Pages
                 {
                     string json = JsonUtil.SerializeObject(user);
                     HttpContext.Session.SetString("user", json);
-                    if(user.RoleName.Equals("Admin")) return Redirect("/admin/room/list");
+                    if(user.RoleName!=null && user.RoleName.Equals("Admin")) return Redirect("/admin/room/list");
                     return Redirect("~/room/list");
                 }
             }catch(Exception ex)
@@ -46,6 +46,7 @@ namespace MotelManagement.Pages
             Console.WriteLine(JsonSerializer.Serialize(user));
             try
             {
+                user.RoleName = "User";
                 await _service.Register(user);
                 TempData["Message"] = "Success";
             }catch(Exception ex)

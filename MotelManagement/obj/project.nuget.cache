@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Boglj6wlPgw=",
+  "dgSpecHash": "Qt7VIM+zMio=",
   "success": true,
-  "projectFilePath": "D:\\c#Workspace\\Motel-Management\\MotelManagement\\MotelManagement.csproj",
+  "projectFilePath": "D:\\c#Workspace\\QuanLyChungCu\\MotelManagement\\MotelManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\closedxml\\0.100.3\\closedxml.0.100.3.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\documentformat.openxml\\2.16.0\\documentformat.openxml.2.16.0.nupkg.sha512",

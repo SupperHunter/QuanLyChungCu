@@ -70,10 +70,7 @@
                     }
                 </div>
                 <ul class="main-nav nav navbar-nav navbar-right">
-                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="">Home</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/room/list">Phòng Trọ</a></li>
-                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/room/list">Tin Tức Trọ</a></li>                   
-                    <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="/room/list">Liên Hệ</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="/room/list">Phòng Chung cư</a></li>
                 @if (!String.IsNullOrEmpty(@Accessor.HttpContext.Session.GetString("user")))
                 {
                     User user = (User)JsonUtil.DeserializeObject<User>(Accessor.HttpContext.Session.GetString("user"));
@@ -172,22 +169,6 @@
                                         <p style="line-height: 17px; padding: 8px 2px;">Các sự kiện Esport ...</p>
                                     </div>
                                 </li>
-
-                                <li>
-                                    <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                        <a href="#">
-                                            <img src="~/Assets/User/assets/img/demo/small-proerty-2.jpg">
-                                        </a>
-                                        <span class="blg-date">19-03-2023</span>
-
-                                    </div>
-                                    <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                        <h6> <a href="#">Cần Pass Gấp</a></h6>
-                                        <p style="line-height: 17px; padding: 8px 2px;">Bạn Nguyễn Quang Linh cần...</p>
-                                    </div>
-                                </li>
-
-
                             </ul>
                         </div>
                     </div>
