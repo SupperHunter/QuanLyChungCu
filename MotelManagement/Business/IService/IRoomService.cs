@@ -9,12 +9,15 @@ namespace MotelManagement.Business.IService
 
         public Task<List<Room>> roomRecommended();
         public Task<Room> getRoomById(int roomId);
-        public Task<List<Room>> roomSimilar(int ? statusRoom);
+        public Task<List<Room>> roomSimilar(int? statusRoom);
         public Task PassingRoom(Room room);
         public Task<Contract> isRoomRented(string roomName);
 
         public Task AddNewRoom(Room room);
 
         public Task updateRoom(Room room);
+
+
+        public Task DeleteRoomwithid(int roomid);
     }
 }

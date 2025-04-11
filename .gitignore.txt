@@ -1,0 +1,12 @@
+# Ignore Visual Studio cache, binary, and build results
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dll
+*.exe
+*.v2
+*.FileListAbsolute.txt

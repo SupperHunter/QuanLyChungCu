@@ -25,6 +25,8 @@ namespace MotelManagement.Data.Models
         public int StatusId { get; set; }
         public int RoomTypeId { get; set; }
 
+        public bool Status { get; set; } = true;
+
         public virtual RoomType RoomType { get; set; }
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }

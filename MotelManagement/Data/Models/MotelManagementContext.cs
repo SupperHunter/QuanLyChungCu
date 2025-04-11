@@ -287,6 +287,8 @@ namespace MotelManagement.Data.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.Status);
+
                 entity.Property(e => e.Price).HasColumnType("money");
 
                 entity.Property(e => e.RoomTypeId).HasColumnName("RoomTypeID");

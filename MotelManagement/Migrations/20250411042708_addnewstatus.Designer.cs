@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotelManagement.Data.Models;
 
@@ -11,9 +12,10 @@ using MotelManagement.Data.Models;
 namespace MotelManagement.Migrations
 {
     [DbContext(typeof(MotelManagementContext))]
-    partial class MotelManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20250411042708_addnewstatus")]
+    partial class addnewstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

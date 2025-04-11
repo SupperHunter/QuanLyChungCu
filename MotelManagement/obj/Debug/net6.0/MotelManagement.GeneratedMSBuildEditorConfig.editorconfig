@@ -9,121 +9,119 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MotelManagement
 build_property.RootNamespace = MotelManagement
-build_property.ProjectDir = D:\c#Workspace\QuanLyChungCu\MotelManagement\
+build_property.ProjectDir = D:\unity\web\QuanLyChungCu\MotelManagement\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\c#Workspace\QuanLyChungCu\MotelManagement
+build_property.MSBuildProjectDirectory = D:\unity\web\QuanLyChungCu\MotelManagement
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 6.0
-build_property.EnableCodeStyleSeverity = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/AddEmployeeManager.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/AddEmployeeManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cQWRkRW1wbG95ZWVNYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/AddRooomManager.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/AddRooomManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cQWRkUm9vb21NYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/AddRooomTypeManager.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/AddRooomTypeManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cQWRkUm9vb21UeXBlTWFuYWdlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/BillManager.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/BillManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cQmlsbE1hbmFnZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/EmployeeList.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/EmployeeList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cRW1wbG95ZWVMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/ListBooking.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/ListBooking.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cTGlzdEJvb2tpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/ListPassing.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/ListPassing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cTGlzdFBhc3NpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/ListRoom.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/ListRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cTGlzdFJvb20uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/TestUpload.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/TestUpload.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cVGVzdFVwbG9hZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/admin/UpdateRoomManager.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/admin/UpdateRoomManager.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcYWRtaW5cVXBkYXRlUm9vbU1hbmFnZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/ChangePassword.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/DetailRoom.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/DetailRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV0YWlsUm9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Error.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/ErrorPage.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/ErrorPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3JQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Index.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/ListPassing.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/ListPassing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlzdFBhc3NpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/ListRoom.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/ListRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlzdFJvb20uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Login.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Logout.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/MyListRoom.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/MyListRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlMaXN0Um9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/MyRoom.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/MyRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Shared/_AdminLayout.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Shared/_UserLayout.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Shared/_UserLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Vc2VyTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/_ViewImports.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/_ViewStart.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/c\#Workspace/QuanLyChungCu/MotelManagement/Pages/Shared/_Layout.cshtml]
+[D:/unity/web/QuanLyChungCu/MotelManagement/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-jcgw2co0n6

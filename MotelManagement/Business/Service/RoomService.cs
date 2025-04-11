@@ -1,4 +1,5 @@
-﻿using MotelManagement.Business.IService;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using MotelManagement.Business.IService;
 using MotelManagement.Common;
 using MotelManagement.Core.IRepository;
 using MotelManagement.Data.Models;
@@ -83,13 +84,13 @@ namespace MotelManagement.Business.Service
         }
         public Task<List<Room>> roomRecommended()
         {
-            return _unitOfWork.roomRepository.Top4BestRoom(); 
+            return _unitOfWork.roomRepository.Top4BestRoom();
         }
 
         public Task<Room> getRoomById(int roomId)
         {
             // Business get Room By Id 
-            return _unitOfWork.roomRepository.getRoomById(roomId); 
+            return _unitOfWork.roomRepository.getRoomById(roomId);
         }
 
         public Task<List<Room>> roomSimilar(int? statusRoom)
@@ -117,6 +118,12 @@ namespace MotelManagement.Business.Service
         public async Task updateRoom(Room room)
         {
             await _unitOfWork.roomRepository.UpdateAsync(room);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async Task DeleteRoomwithid(int roomid)
+        {
+            await _unitOfWork.roomRepository.DeleteRoom(roomid);
             await _unitOfWork.SaveAsync();
         }
     }

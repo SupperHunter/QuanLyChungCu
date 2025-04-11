@@ -2,153 +2,171 @@
 @using MotelManagement.Data.Models
 @model MotelManagement.Pages.admin.ListRoomModel
 @{
-    <script src="~/js/paging.js"></script>
+						<script src="~/js/paging.js"></script>
 }
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+			<div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+			<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
 <div class="page-header">
-    <div class="row align-items-center">
-        <div class="col">
-            <div class="mt-5">
-                <h4 class="card-title float-left mt-2">Danh Sách Phòng</h4>
-                <div class="d-flex float-right gap-2">
-                    <a href="/admin/room/addroom" class="btn btn-primary">Thêm Phòng</a>
-                    <a href="/admin/roomtype/add" class="btn btn-secondary">Thêm kiểu phòng</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row align-items-center">
+		<div class="col">
+			<div class="mt-5">
+				<h4 class="card-title float-left mt-2">Danh Sách Phòng</h4>
+				<div class="d-flex float-right gap-2">
+					<a href="/admin/room/addroom" class="btn btn-primary">Thêm Phòng</a>
+					<a href="/admin/roomtype/add" class="btn btn-secondary">Thêm kiểu phòng</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
-        <form action="" method="Get">
-            <div class="row formtype">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Search Phòng</label>
-                        <input class="form-control" name="nameRoom" type="text" value="@ViewData["nameRoom"]" placeholder="Search Theo Tên">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Loại Phòng</label>
-                        <select class="form-control" name="roomTypeId">
-                            <option value=""> -Loại Phòng- </option>
-                            @foreach (RoomType roomType in (List<RoomType>)@ViewData["roomTypes"])
-                            {
-                                if (roomType.RoomTypeId == Convert.ToInt32(ViewData["roomTypeId"]))
-                                {
-                                    <option selected="selected" value="@roomType.RoomTypeId">@roomType.Name</option>
-                                }
-                                else
-                                {
-                                    <option value="@roomType.RoomTypeId">@roomType.Name</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Trạng Thái</label>
-                        <select class="form-control" name="status">
-                            <
-                            <option value=""> -Trạng Thái- </option>
-                            @foreach (Status status in (List<Status>)@ViewData["statusList"])
-                            {
-                                if (status.StatusId == Convert.ToInt32(ViewData["status"]))
-                                {
-                                    <option selected="selected" value="@status.StatusId">@status.Name</option>
-                                }
-                                else
-                                {
-                                    <option value="@status.StatusId">@status.Name</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>
+	<div class="col-lg-12">
+		<form action="" method="Get">
+			<div class="row formtype">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Search Phòng</label>
+						<input class="form-control" name="nameRoom" type="text" value="@ViewData["nameRoom"]" placeholder="Search Theo Tên">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Loại Phòng</label>
+						<select class="form-control" name="roomTypeId">
+							<option value=""> -Loại Phòng- </option>
+							@foreach (RoomType roomType in (List<RoomType>)@ViewData["roomTypes"])
+							{
+								if (roomType.RoomTypeId == Convert.ToInt32(ViewData["roomTypeId"]))
+								{
+																			<option selected="selected" value="@roomType.RoomTypeId">@roomType.Name</option>
+								}
+								else
+								{
+																			<option value="@roomType.RoomTypeId">@roomType.Name</option>
+								}
+							}
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Trạng Thái</label>
+						<select class="form-control" name="status">
+							<
+							<option value=""> -Trạng Thái- </option>
+							@foreach (Status status in (List<Status>)@ViewData["statusList"])
+							{
+								if (status.StatusId == Convert.ToInt32(ViewData["status"]))
+								{
+																			<option selected="selected" value="@status.StatusId">@status.Name</option>
+								}
+								else
+								{
+																			<option value="@status.StatusId">@status.Name</option>
+								}
+							}
+						</select>
+					</div>
+				</div>
 
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Search</label>
-                        <button class="btn btn-info m-t-0 btn-block search_button"> Search </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Search</label>
+						<button class="btn btn-info m-t-0 btn-block search_button"> Search </button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="card card-table">
-            <div class="card-body booking_card">
-                <div class="table-responsive">
-                    <table class="table table-stripped table table-hover table-center mb-0">
-                        <thead>
-                            <tr>
-                                <th>Room Id</th>
-                                <th>Tên Phòng</th>
-                                <th>Giá</th>
-                                <th>Tối Đa</th>
-                                <th>Trạng Thái</th>
-                                <th>Loại Phòng</th>
-                                <th>Bookings</th>
-                                <th>Chi Tiết</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (Room room in (List<Room>)@ViewData["rooms"])
-                            {
-                                <tr>
-                                    <td>@room.RoomId</td>
-                                    <td>@room.Name</td>
-                                    <td>@room.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
-                                    <td>@room.MaxPerson</td>
-                                    <td>
-                                        @if (room.StatusId == ((List<Status>)@ViewData["statusList"])[0].StatusId)
-                                        {
-                                            <span class="text-danger mt-3 mb-3" style="font-weight: bold;margin-left:40px">Đã Thuê</span>
-                                        }
-                                        @if (room.StatusId == ((List<Status>)@ViewData["statusList"])[1].StatusId)
-                                        {
-                                            <span class="text-success mt-3 mb-3" style="font-weight: bold; margin-left:40px">Còn Trống</span>
-                                        }
-                                        @if (room.StatusId == ((List<Status>)@ViewData["statusList"])[2].StatusId)
-                                        {
-                                            <span class="text-info mt-3 mb-3" style="font-weight: bold; margin-left:40px">Cần Pass</span>
-                                        }
-                                    </td>
-                                    <td>@room.RoomType.Name</td>
-                                    <td><button onclick = "goBookings(@room.RoomId)" class="btn btn-warning ">Danh Sách Booking</button></td>
-                                    <td><button onclick = "goDetail(@room.RoomId)" class="btn btn-danger ">Cập Nhật</button></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- This is pagination -->
-    <div class="pagination-bx rounded-sm gray clearfix">
-        <ul id="paggerBottom" class="pagination">
-        </ul>
-    </div>
+	<div class="col-sm-12">
+		<div class="card card-table">
+			<div class="card-body booking_card">
+				<div class="table-responsive">
+					<table class="table table-stripped table table-hover table-center mb-0">
+						<thead>
+							<tr>
+								<th>Room Id</th>
+								<th>Tên Phòng</th>
+								<th>Giá</th>
+								<th>Tối Đa</th>
+								<th>Trạng Thái</th>
+								<th>Loại Phòng</th>
+								<th>Bookings</th>
+								<th>Chi Tiết</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (Room room in (List<Room>)@ViewData["rooms"])
+							{
+													<tr>
+														<td>@room.RoomId</td>
+														<td>@room.Name</td>
+														<td>@room.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</td>
+														<td>@room.MaxPerson</td>
+														<td>
+										@if (room.StatusId == ((List<Status>)@ViewData["statusList"])[0].StatusId)
+										{
+																					<span class="text-danger mt-3 mb-3" style="font-weight: bold;margin-left:40px">Đã Thuê</span>
+										}
+										@if (room.StatusId == ((List<Status>)@ViewData["statusList"])[1].StatusId)
+										{
+																					<span class="text-success mt-3 mb-3" style="font-weight: bold; margin-left:40px">Còn Trống</span>
+										}
+										@if (room.StatusId == ((List<Status>)@ViewData["statusList"])[2].StatusId)
+										{
+																					<span class="text-info mt-3 mb-3" style="font-weight: bold; margin-left:40px">Cần Pass</span>
+										}
+														</td>
+														<td>@room.RoomType.Name</td>
+														<td><button onclick = "goBookings(@room.RoomId)" class="btn btn-warning ">Danh Sách Booking</button></td>
+														<td><button onclick = "goDetail(@room.RoomId)" class="btn btn-danger ">Cập Nhật</button></td>
+														<td><button class="btn btn-outline-danger" onclick="confirmDelete(@room.RoomId)"><i class="fa fa-trash"></i> Xóa</button</td>
+													</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- This is pagination -->
+	<div class="pagination-bx rounded-sm gray clearfix">
+		<ul id="paggerBottom" class="pagination">
+		</ul>
+	</div>
 </div>
 
-@section Scripts{
-<script>
-    var pageindex = @ViewData["pageIndex"];
-    var totalpage = @ViewData["totalPage"];
-    var container = document.getElementById('paggerBottom');
-    var gap = 2;
-    var url_param = '@ViewData["url"]';
-    pagination(pageindex,totalpage,container,gap,url_param);
+@section Scripts {
+					<script>
+						var pageindex = @ViewData["pageIndex"];
+						var totalpage = @ViewData["totalPage"];
+						var container = document.getElementById('paggerBottom');
+						var gap = 2;
+						var url_param = '@ViewData["url"]';
+						pagination(pageindex,totalpage,container,gap,url_param);
 
-    function goBookings(roomId){
-        window.location.href = "/admin/room/booking/list?roomid="+roomId;
-    }
-    function goDetail(roomId){
-       window.location.href = "/admin/room/updateroom?id="+roomId;
-    }
-</script>
+						function goBookings(roomId){
+							window.location.href = "/admin/room/booking/list?roomid="+roomId;
+						}
+						function goDetail(roomId){
+						   window.location.href = "/admin/room/updateroom?id="+roomId;
+						}
+
+						function confirmDelete(roomId) {
+							if (confirm("Bạn có chắc chắn muốn xóa phòng này không?")) {
+								window.location.href = `/admin/room/list?handler=delete&id=${roomId}`;
+							}
+						}
+					</script>
 }
